@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "session-designer"
+version = "0.1.0"
+description = "LangGraph-based learning session designer prototype"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.6",
+    "langgraph>=0.2",
+    "langchain-core>=0.3",
+    "anthropic>=0.25",
+    "langchain-anthropic>=0.3",
+    "python-dotenv>=1.0",
+    "typer>=0.12",
+]
+
+[project.optional-dependencies]
+dev = ["ruff>=0.6"]
+
+[project.scripts]
+session-designer = "session_designer.cli.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["session_designer"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

@@ -1,0 +1,54 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Bytecode / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Packaging / build
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+sdist/
+wheels/
+pip-wheel-metadata/
+
+# Test & quality tools
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.tox/
+.nox/
+hypothesis/
+
+# Secrets (keep .env.example in git)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs & local scratch
+*.log
+*.sqlite3
+*.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs (uncomment .vscode/ if your team never commits shared settings)
+.idea/
+*.swp
+*.swo
+*~

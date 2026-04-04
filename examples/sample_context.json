@@ -1,0 +1,36 @@
+{
+  "user_id": "user_demo_1",
+  "interests": [
+    { "label": "Python web backends", "weight": 0.9 },
+    { "label": "PostgreSQL", "weight": 0.7 },
+    { "label": "DevOps / containers", "weight": 0.5 }
+  ],
+  "skill_levels": [
+    { "topic": "Python", "level": "intermediate" },
+    { "topic": "SQL", "level": "beginner" },
+    { "topic": "FastAPI", "level": "beginner" },
+    { "topic": "Docker", "level": "beginner" }
+  ],
+  "completed_sessions": [
+    {
+      "title": "Python virtual environments and pip",
+      "summary": "Created venvs, installed packages, requirements.txt",
+      "topics": ["Python", "tooling"],
+      "completed_at": "2026-03-10"
+    },
+    {
+      "title": "Intro to HTTP and REST",
+      "summary": "Verbs, status codes, JSON APIs",
+      "topics": ["web", "HTTP"],
+      "completed_at": "2026-03-18"
+    }
+  ],
+  "uncompleted_sessions": [
+    {
+      "title": "Build a CRUD API with FastAPI",
+      "summary": "Started routing; paused before DB layer",
+      "topics": ["FastAPI", "Python"],
+      "last_touched_at": "2026-03-25"
+    }
+  ]
+}
