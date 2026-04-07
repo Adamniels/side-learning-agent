@@ -65,25 +65,36 @@ class ValidationResult(BaseModel):
     overall_notes: str = Field(default="", max_length=1500)
 
 
-class SessionDesignResult(BaseModel):
-    """Strict app-facing result of the session design workflow."""
-
-    selected_topic: SelectedTopic
-    why_chosen: str = Field(max_length=2000)
-    candidates_considered: list[CandidateTopic]
-    goal: str = Field(description="Flattened goal statement for convenience.")
+class SessionPayload(BaseModel):
+    title: str = Field(min_length=3, max_length=200)
+    summary: str = Field(max_length=800)
+    difficulty_alignment: str = Field(max_length=600)
+    goal: str = Field(description="Flattened goal statement for persistence.")
     context: str
-    hands_on: str = Field(description="Flattened hands-on instructions.")
+    hands_on: str = Field(description="Flattened hands-on instructions for persistence.")
     hands_on_expected_output: str
     extension: str
-    suggested_resources: list[SuggestedResource]
+    subject_areas: list[str] = Field(default_factory=list)
+    estimated_duration_in_minutes: int | None = Field(default=None, ge=15, le=180)
+
+
+class DesignerMetadata(BaseModel):
+    selected_candidate_id: str | None = None
+    why_chosen: str = Field(max_length=2000)
+    candidates_considered: list[CandidateTopic]
     validation: ValidationResult
     revision_count: int = Field(ge=0)
     normalization_notes: list[str] = Field(default_factory=list)
-    prototype_notes: list[str] = Field(
-        default_factory=list,
-        description="e.g. LLM-suggested URLs are not live-verified in the prototype.",
-    )
+    prototype_notes: list[str] = Field(default_factory=list)
+    comparison_notes: str | None = Field(default=None, max_length=2000)
+
+
+class SessionDesignResult(BaseModel):
+    """Output contract split into persistence payload and designer metadata."""
+
+    session_payload: SessionPayload
+    designer_metadata: DesignerMetadata
+    suggested_resources: list[SuggestedResource]
 
     @classmethod
     def from_pipeline(
@@ -97,20 +108,33 @@ class SessionDesignResult(BaseModel):
         validation: ValidationResult,
         revision_count: int,
         normalization_notes: list[str],
+        comparison_notes: str = "",
         prototype_notes: list[str] | None = None,
     ) -> SessionDesignResult:
-        return cls(
-            selected_topic=selected,
-            why_chosen=why_chosen,
-            candidates_considered=candidates,
+        payload = SessionPayload(
+            title=selected.title,
+            summary=selected.summary,
+            difficulty_alignment=selected.difficulty_alignment,
             goal=session.goal.statement,
             context=session.context.text,
             hands_on=session.hands_on.instructions,
             hands_on_expected_output=session.hands_on.expected_output,
             extension=session.extension.text,
-            suggested_resources=resources,
+            subject_areas=list(session.subject_areas),
+            estimated_duration_in_minutes=session.hands_on.time_estimate_minutes,
+        )
+        metadata = DesignerMetadata(
+            selected_candidate_id=selected.candidate_id,
+            why_chosen=why_chosen,
+            candidates_considered=candidates,
             validation=validation,
             revision_count=revision_count,
             normalization_notes=normalization_notes,
             prototype_notes=prototype_notes or [],
+            comparison_notes=comparison_notes or None,
+        )
+        return cls(
+            session_payload=payload,
+            designer_metadata=metadata,
+            suggested_resources=resources,
         )

@@ -153,6 +153,7 @@ def _session(_: str) -> DesignedSession:
         extension=ExtensionSuggestion(
             text="Next session: add SQLAlchemy + a single `Item` model and persist rows via a FastAPI route.",
         ),
+        subject_areas=["api", "python", "fastapi", "configuration"],
     )
 
 

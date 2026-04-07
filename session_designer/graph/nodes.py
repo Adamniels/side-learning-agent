@@ -216,13 +216,17 @@ def return_result(state: SessionDesignerState, deps: GraphDeps) -> dict[str, Any
         validation=validation,
         revision_count=int(state.get("revision_count") or 0),
         normalization_notes=notes,
+        comparison_notes=state.get("comparison_notes") or "",
         prototype_notes=proto,
     )
     stop = state.get("stop_reason")
     if stop:
+        existing = list(result.designer_metadata.prototype_notes)
         result = result.model_copy(
             update={
-                "prototype_notes": result.prototype_notes + [f"stop_reason={stop}"],
+                "designer_metadata": result.designer_metadata.model_copy(
+                    update={"prototype_notes": existing + [f"stop_reason={stop}"]}
+                )
             }
         )
     return {"final_result": result.model_dump(mode="json")}

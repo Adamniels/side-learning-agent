@@ -70,12 +70,6 @@ Structured JSON matching **`SessionDesignResult`** in [`session_designer/domain/
 
 | Field | Role |
 |--------|------|
-| `selected_topic` | Title, summary, difficulty alignment, optional `candidate_id` |
-| `why_chosen` | Why this topic won |
-| `candidates_considered` | 3–5 candidates the model compared |
-| `goal`, `context`, `hands_on`, `hands_on_expected_output`, `extension` | Session design (no reflection section) |
+| `session_payload` | Persistence-ready session data (`title`, `summary`, `difficulty_alignment`, `goal`, `context`, `hands_on`, `hands_on_expected_output`, `extension`, `subject_areas`, optional `estimated_duration_in_minutes`) |
+| `designer_metadata` | Designer-owned generation metadata (`why_chosen`, `candidates_considered`, `validation`, `revision_count`, notes) |
 | `suggested_resources` | Kind, title, url, rationale (LLM-suggested in prototype; not live-verified) |
-| `validation` | `passed`, `checklist`, `issues`, `suggested_fixes`, `overall_notes` |
-| `revision_count` | How many validation-driven revisions ran |
-| `normalization_notes` | Input clamping / dedupe notes |
-| `prototype_notes` | e.g. disclaimer about resource URLs |

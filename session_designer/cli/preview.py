@@ -25,7 +25,8 @@ def _text_block(s: str) -> Text:
 
 def print_session_preview(result: SessionDesignResult) -> None:
     console = Console(highlight=False)
-    st = result.selected_topic
+    payload = result.session_payload
+    metadata = result.designer_metadata
 
     header = Text.assemble(
         ("Session designer", "bold cyan"),
@@ -38,11 +39,11 @@ def print_session_preview(result: SessionDesignResult) -> None:
     hero = Panel(
         Group(
             Text("Selected topic", style="bold white"),
-            Text(st.title, style="bold green"),
-            Text(st.summary, style="white"),
+            Text(payload.title, style="bold green"),
+            Text(payload.summary, style="white"),
             Text(),
             Text("Level fit", style="dim"),
-            Text(st.difficulty_alignment, style="italic"),
+            Text(payload.difficulty_alignment, style="italic"),
         ),
         title="[bold]Up next[/bold]",
         border_style="cyan",
@@ -53,7 +54,7 @@ def print_session_preview(result: SessionDesignResult) -> None:
     console.print()
 
     why = Panel(
-        _text_block(result.why_chosen),
+        _text_block(metadata.why_chosen),
         title="[bold]Why this topic[/bold]",
         border_style="dim",
         box=box.ROUNDED,
@@ -67,8 +68,9 @@ def print_session_preview(result: SessionDesignResult) -> None:
     cand_table.add_column("#", style="dim", width=3)
     cand_table.add_column("Title", style="bold", ratio=1)
     cand_table.add_column("Fit", style="white", ratio=2)
-    for i, c in enumerate(result.candidates_considered, start=1):
-        mark = "→ " if st.candidate_id and c.id == st.candidate_id else ""
+    selected_candidate_id = metadata.selected_candidate_id
+    for i, c in enumerate(metadata.candidates_considered, start=1):
+        mark = "→ " if selected_candidate_id and c.id == selected_candidate_id else ""
         cand_table.add_row(
             f"{i}",
             f"{mark}{escape(c.title)}",
@@ -88,17 +90,19 @@ def print_session_preview(result: SessionDesignResult) -> None:
             padding=(0, 1),
         )
 
-    console.print(_section("Goal", _text_block(result.goal)))
+    console.print(_section("Goal", _text_block(payload.goal)))
     console.print()
-    console.print(_section("Context", _text_block(result.context)))
+    console.print(_section("Context", _text_block(payload.context)))
     console.print()
-    ho = _text_block(result.hands_on)
+    ho = _text_block(payload.hands_on)
     ho.append("\n")
     ho.append("Expected output: ", style="bold")
-    ho.append(escape(result.hands_on_expected_output))
+    ho.append(escape(payload.hands_on_expected_output))
     console.print(_section("Hands-on", ho))
     console.print()
-    console.print(_section("Extension", _text_block(result.extension)))
+    console.print(_section("Extension", _text_block(payload.extension)))
+    console.print()
+    console.print(_section("Subject areas", _text_block(", ".join(payload.subject_areas))))
     console.print()
 
     console.print(Rule("[bold]Suggested resources[/bold]", style="dim"))
@@ -121,7 +125,7 @@ def print_session_preview(result: SessionDesignResult) -> None:
             console.print(Panel(block, box=box.MINIMAL, padding=(0, 0, 0, 2)))
     console.print()
 
-    vr = result.validation
+    vr = metadata.validation
     val_style = "green" if vr.passed else "yellow"
     val_title = "Quality check — passed" if vr.passed else "Quality check — needs attention"
     lines: list[Text | Table] = []
@@ -149,7 +153,7 @@ def print_session_preview(result: SessionDesignResult) -> None:
         Panel(
             Group(*lines) if lines else Text("No checklist details.", style="dim"),
             title=f"[{val_style}]{val_title}[/{val_style}]",
-            subtitle=f"Revisions applied: {result.revision_count}",
+            subtitle=f"Revisions applied: {metadata.revision_count}",
             border_style=val_style,
             box=box.ROUNDED,
             padding=(0, 1),
@@ -157,10 +161,10 @@ def print_session_preview(result: SessionDesignResult) -> None:
     )
 
     foot: list[str] = []
-    if result.normalization_notes:
-        foot.append("Input notes: " + "; ".join(result.normalization_notes))
-    if result.prototype_notes:
-        foot.append("; ".join(result.prototype_notes))
+    if metadata.normalization_notes:
+        foot.append("Input notes: " + "; ".join(metadata.normalization_notes))
+    if metadata.prototype_notes:
+        foot.append("; ".join(metadata.prototype_notes))
     if foot:
         console.print()
         console.print(Text("\n".join(foot), style="dim"))

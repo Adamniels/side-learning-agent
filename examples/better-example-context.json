@@ -1,0 +1,79 @@
+{
+    "user_id": "user_demo_1",
+    "interests": [
+        {
+            "label": "Python web backends",
+            "weight": 0.9
+        },
+        {
+            "label": "PostgreSQL",
+            "weight": 0.7
+        },
+        {
+            "label": "DevOps / containers",
+            "weight": 0.5
+        }
+    ],
+    "skill_levels": [
+        {
+            "topic": "Python",
+            "level": "intermediate"
+        },
+        {
+            "topic": "SQL",
+            "level": "beginner"
+        },
+        {
+            "topic": "FastAPI",
+            "level": "beginner"
+        },
+        {
+            "topic": "Docker",
+            "level": "beginner"
+        }
+    ],
+    "completed_sessions": [
+        {
+            "title": "Python virtual environments and pip",
+            "summary": "Learn how to create and use Python virtual environments, install packages with pip, and manage dependencies using requirements.txt.",
+            "topics": [
+                "Python",
+                "tooling",
+                "package management"
+            ],
+            "completed_at": "2026-03-10",
+            "reflection": {
+                "solution": "Created venvs, installed packages, generated requirements.txt",
+                "reflection": "Now understand why isolated environments are important and how pip fits into workflow",
+                "difficulty_feedback": "AboutRight"
+            }
+        },
+        {
+            "title": "Intro to HTTP and REST",
+            "summary": "Understand HTTP fundamentals including request methods, status codes, and how RESTful APIs are structured and used with JSON.",
+            "topics": [
+                "web",
+                "HTTP",
+                "REST"
+            ],
+            "completed_at": "2026-03-18",
+            "reflection": {
+                "solution": "Explored endpoints using curl and built simple JSON requests",
+                "reflection": "Better understanding of how frontend communicates with backend via HTTP",
+                "difficulty_feedback": "Easy"
+            }
+        }
+    ],
+    "uncompleted_sessions": [
+        {
+            "title": "Build a CRUD API with FastAPI",
+            "summary": "Build a RESTful CRUD API using FastAPI, including routing, request validation, and database integration.",
+            "topics": [
+                "FastAPI",
+                "Python",
+                "backend"
+            ],
+            "last_touched_at": "2026-03-25"
+        }
+    ]
+}

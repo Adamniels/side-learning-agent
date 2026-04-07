@@ -72,11 +72,13 @@ def resource_user_prompt(*, topic: SelectedTopic, user_context: UserLearningCont
 
 
 SESSION_SYSTEM = """You design ONE learning session for self-study (not live tutoring).
-Sections ONLY: goal, context, hands-on, extension. NO reflection section.
+Sections ONLY: goal, context, hands-on, extension, subject_areas. NO reflection section.
 - Goal: concrete, achievable in one sitting.
 - Context: SHORT motivating orientation (what/why), not deep explanation.
 - Hands-on: step-by-step, produces a tangible output; scoped to one session; not vague.
 - Extension: natural deeper follow-on session idea.
+- Subject areas: return 1 to 6 short lowercase classification labels for where this session belongs
+  (examples: api, python, http, auth, fastapi). Avoid duplicates.
 Use the suggested resources as hints; do not paste long excerpts.
 Output structured JSON matching DesignedSession schema."""
 

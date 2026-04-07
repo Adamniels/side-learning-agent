@@ -59,3 +59,11 @@ class DesignedSession(BaseModel):
     context: SessionContext
     hands_on: HandsOnExercise
     extension: ExtensionSuggestion
+    subject_areas: list[str] = Field(
+        min_length=1,
+        max_length=6,
+        description=(
+            "1-6 short classification labels describing the areas this session belongs to "
+            "(e.g. api, python, auth, http)."
+        ),
+    )
