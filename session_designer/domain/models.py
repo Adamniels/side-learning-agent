@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import date
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
@@ -31,7 +32,7 @@ class UserLearningContext(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    user_id: str = Field(min_length=1, max_length=128)
+    user_id: UUID
     interests: list[UserInterest] = Field(default_factory=list)
     completed_sessions: list[PastSession] = Field(default_factory=list)
     uncompleted_sessions: list[PastSession] = Field(default_factory=list)

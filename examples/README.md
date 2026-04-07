@@ -10,7 +10,7 @@ JSON fixtures for manual and automated runs of the session designer.
 
 ## Schema
 
-The JSON shape matches **`UserLearningContext`** in **`session_designer/domain/models.py`** (Pydantic will coerce dates and reject unknown fields).
+The JSON shape matches **`UserLearningContext`** in **`session_designer/domain/models.py`** (Pydantic will coerce dates and reject unknown fields). `user_id` must be a valid UUID string.
 
 ## How this folder connects
 

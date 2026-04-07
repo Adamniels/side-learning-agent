@@ -8,7 +8,7 @@ from session_designer.prompts.templates import topic_user_prompt
 def test_user_interest_context_is_supported_and_serialized_in_prompt() -> None:
     ctx = UserLearningContext.model_validate(
         {
-            "user_id": "user_demo_1",
+            "user_id": "0f5db95f-566c-42f8-af4f-5662134f04d8",
             "interests": [
                 {
                     "label": "Cybersecurity",
@@ -26,7 +26,7 @@ def test_user_interest_context_is_supported_and_serialized_in_prompt() -> None:
 def test_user_interest_context_defaults_to_empty_for_legacy_payloads() -> None:
     ctx = UserLearningContext.model_validate(
         {
-            "user_id": "user_demo_1",
+            "user_id": "0f5db95f-566c-42f8-af4f-5662134f04d8",
             "interests": [{"label": "Cybersecurity", "weight": 0.9}],
         }
     )
@@ -38,9 +38,19 @@ def test_user_learning_context_rejects_legacy_skill_levels_payload() -> None:
     with pytest.raises(ValueError):
         UserLearningContext.model_validate(
             {
-                "user_id": "user_demo_1",
+                "user_id": "0f5db95f-566c-42f8-af4f-5662134f04d8",
                 "interests": [{"label": "Cybersecurity", "weight": 0.9}],
                 "skill_levels": [{"topic": "Python", "level": "beginner"}],
+            }
+        )
+
+
+def test_user_learning_context_rejects_non_uuid_user_id() -> None:
+    with pytest.raises(ValueError):
+        UserLearningContext.model_validate(
+            {
+                "user_id": "user_demo_1",
+                "interests": [{"label": "Cybersecurity", "weight": 0.9}],
             }
         )
 

@@ -6,7 +6,7 @@ This folder defines how the agent **reads** learner context without owning canon
 
 | Module | Purpose |
 |--------|---------|
-| `repository.py` | **`UserContextRepository`** protocol: `get_context(user_id) -> UserLearningContext`. Implementations: **`InMemoryUserContextRepository`** (dict of contexts), **`JsonFileUserContextRepository`** (prototype: one JSON file; optional user_id match), **`load_context_from_json(path)`** (parse fixture → **`UserLearningContext`**). |
+| `repository.py` | **`UserContextRepository`** protocol: `get_context(user_id)` where `user_id` is a UUID. Implementations: **`InMemoryUserContextRepository`** (dict of contexts), **`JsonFileUserContextRepository`** (prototype: one JSON file; strict user_id match), **`load_context_from_json(path)`** (parse fixture → **`UserLearningContext`**). |
 
 ## How this folder connects
 
