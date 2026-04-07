@@ -24,6 +24,7 @@ def analysis_user_prompt(ctx: UserLearningContext) -> str:
 TOPIC_SYSTEM = """You propose 3 to 5 candidate NEXT session topics for a learner.
 Rules:
 - Must align with interests and self-reported skill levels.
+- Use each interest's `context` (if present) to make topics concrete and practically relevant.
 - Avoid repeating completed session themes unless clearly deeper/next step.
 - Each topic must be concrete enough for one session with a hands-on artifact.
 - Broad enough they can research further afterward.
@@ -102,7 +103,7 @@ def session_user_prompt(
 
 VALIDATION_SYSTEM = """You validate a designed learning session from a session designer agent.
 Check:
-- Topic is a sensible next step for this user (level, interests, history).
+- Topic is a sensible next step for this user (level, interests, interest context, history).
 - Goal is concrete.
 - Context is short and useful, not overly deep.
 - Hands-on is concrete, realistic for one session, produces an actual output/deliverable.

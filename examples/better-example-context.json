@@ -3,15 +3,18 @@
     "interests": [
         {
             "label": "Python web backends",
-            "weight": 0.9
+            "weight": 0.9,
+            "context": "I am building APIs and want to improve architecture decisions around auth and reliability."
         },
         {
             "label": "PostgreSQL",
-            "weight": 0.7
+            "weight": 0.7,
+            "context": "I want stronger practical database skills for indexing, joins, and query performance."
         },
         {
             "label": "DevOps / containers",
-            "weight": 0.5
+            "weight": 0.5,
+            "context": "I deploy hobby projects and want repeatable Docker-based release workflows."
         }
     ],
     "skill_levels": [

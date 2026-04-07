@@ -15,6 +15,7 @@ class SkillLevel(str, Enum):
 class UserInterest(BaseModel):
     label: str = Field(min_length=1, max_length=200)
     weight: float = Field(ge=0.0, le=1.0, default=0.5)
+    context: str = Field(default="", max_length=1000)
 
 
 class PastSession(BaseModel):

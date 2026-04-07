@@ -1,9 +1,21 @@
 {
   "user_id": "user_demo_1",
   "interests": [
-    { "label": "Python web backends", "weight": 0.9 },
-    { "label": "PostgreSQL", "weight": 0.7 },
-    { "label": "DevOps / containers", "weight": 0.5 }
+    {
+      "label": "Python web backends",
+      "weight": 0.9,
+      "context": "I want to build secure APIs and understand auth/session design in production."
+    },
+    {
+      "label": "PostgreSQL",
+      "weight": 0.7,
+      "context": "I need practical schema design and query tuning for app data models."
+    },
+    {
+      "label": "DevOps / containers",
+      "weight": 0.5,
+      "context": "I deploy side projects with Docker and want smoother local-to-cloud workflows."
+    }
   ],
   "skill_levels": [
     { "topic": "Python", "level": "intermediate" },
