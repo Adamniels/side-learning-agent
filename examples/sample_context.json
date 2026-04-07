@@ -17,12 +17,6 @@
       "context": "I deploy side projects with Docker and want smoother local-to-cloud workflows."
     }
   ],
-  "skill_levels": [
-    { "topic": "Python", "level": "intermediate" },
-    { "topic": "SQL", "level": "beginner" },
-    { "topic": "FastAPI", "level": "beginner" },
-    { "topic": "Docker", "level": "beginner" }
-  ],
   "completed_sessions": [
     {
       "title": "Python virtual environments and pip",

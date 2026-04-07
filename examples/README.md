@@ -6,11 +6,11 @@ JSON fixtures for manual and automated runs of the session designer.
 
 | File | Purpose |
 |------|---------|
-| `sample_context.json` | Example **`UserLearningContext`**: `user_id`, `interests`, `skill_levels`, `completed_sessions`, `uncompleted_sessions`. Used by **`session-designer run --fixture examples/sample_context.json`**. |
+| `sample_context.json` | Example **`UserLearningContext`**: `user_id`, `interests`, `completed_sessions`, `uncompleted_sessions`. Used by **`session-designer run --fixture examples/sample_context.json`**. |
 
 ## Schema
 
-The JSON shape matches **`UserLearningContext`** in **`session_designer/domain/models.py`** (Pydantic will coerce dates and skill-level dicts).
+The JSON shape matches **`UserLearningContext`** in **`session_designer/domain/models.py`** (Pydantic will coerce dates and reject unknown fields).
 
 ## How this folder connects
 

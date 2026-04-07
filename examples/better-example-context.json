@@ -17,24 +17,6 @@
             "context": "I deploy hobby projects and want repeatable Docker-based release workflows."
         }
     ],
-    "skill_levels": [
-        {
-            "topic": "Python",
-            "level": "intermediate"
-        },
-        {
-            "topic": "SQL",
-            "level": "beginner"
-        },
-        {
-            "topic": "FastAPI",
-            "level": "beginner"
-        },
-        {
-            "topic": "Docker",
-            "level": "beginner"
-        }
-    ],
     "completed_sessions": [
         {
             "title": "Python virtual environments and pip",

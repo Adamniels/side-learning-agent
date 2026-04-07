@@ -1,6 +1,5 @@
 from session_designer.domain.models import (
     PastSession,
-    SkillLevel,
     UserInterest,
     UserLearningContext,
 )
@@ -11,7 +10,6 @@ __all__ = [
     "DesignedSession",
     "PastSession",
     "SessionDesignResult",
-    "SkillLevel",
     "UserInterest",
     "UserLearningContext",
 ]

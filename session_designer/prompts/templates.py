@@ -23,7 +23,7 @@ def analysis_user_prompt(ctx: UserLearningContext) -> str:
 
 TOPIC_SYSTEM = """You propose 3 to 5 candidate NEXT session topics for a learner.
 Rules:
-- Must align with interests and self-reported skill levels.
+- Must align with interests, prior sessions, and practical progression.
 - Use each interest's `context` (if present) to make topics concrete and practically relevant.
 - Avoid repeating completed session themes unless clearly deeper/next step.
 - Each topic must be concrete enough for one session with a hands-on artifact.

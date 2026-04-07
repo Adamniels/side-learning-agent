@@ -6,7 +6,7 @@ This folder holds **Pydantic v2** types: the language of the app (inputs, interm
 
 | Module | Purpose |
 |--------|---------|
-| `models.py` | **`UserLearningContext`**: `user_id`, interests, skill levels, completed/uncompleted **`PastSession`** rows. This is what the graph treats as read-only input (canonical data lives outside the agent). |
+| `models.py` | **`UserLearningContext`**: `user_id`, interests, completed/uncompleted **`PastSession`** rows. This is what the graph treats as read-only input (canonical data lives outside the agent). |
 | `session_schema.py` | **`DesignedSession`**: nested **`SessionGoal`**, **`SessionContext`**, **`HandsOnExercise`**, **`ExtensionSuggestion`** — the four sections only (no reflection). |
 | `output.py` | **`SessionDesignResult`** (final payload), **`CandidateTopic`**, **`SelectedTopic`**, **`SuggestedResource`**, **`ValidationResult`**, enums like **`ResourceKind`**. |
 | `llm_contracts.py` | Pydantic types used **only as structured LLM outputs** (e.g. **`LearningStateAnalysis`**, **`CandidateTopicBatch`**, **`ChooseTopicOutput`**, **`ResourceBatch`**, **`SessionRevision`**). |
