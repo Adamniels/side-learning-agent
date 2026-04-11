@@ -3,10 +3,12 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
+from pathlib import Path
 from typing import Any
 from uuid import UUID
 
 import httpx
+from dotenv import load_dotenv
 from fastapi import BackgroundTasks, FastAPI
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -16,6 +18,11 @@ from session_designer.graph.deps import GraphDeps
 from session_designer.providers.anthropic_provider import AnthropicLLMProvider
 from session_designer.providers.mock_provider import MockLLMProvider
 from session_designer.resources.gatherer import LLMResourceGatherer
+
+# Load .env from package project root (create-session-agent/.env), then cwd — Python does not read .env by itself.
+_project_root = Path(__file__).resolve().parents[2]
+load_dotenv(_project_root / ".env")
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
