@@ -38,6 +38,21 @@ pip install -e ".[dev]"
 
 Copy `.env.example` to `.env` in the project root and set `ANTHROPIC_API_KEY` when not using `--mock`. The CLI loads `.env` by walking up from the `--fixture` path, so it still finds the project `.env` when you pass `examples/sample_context.json`.
 
+## HTTP API (FastAPI, async jobs)
+
+Used by the .NET backend: accepts **`POST /v1/design-jobs`** (returns **202** immediately), runs `run_session_design` in a background task, then POSTs results to the `callbackUrl` with header **`X-Session-Designer-Secret`**.
+
+```bash
+# After pip install -e ".[dev]" in a venv:
+export SESSION_DESIGNER_SHARED_SECRET="same-as-dotnet-SessionDesigner__SharedSecret"
+# Optional: no Anthropic key required
+export SESSION_DESIGNER_USE_MOCK=true
+
+uvicorn session_designer.api.main:app --host 0.0.0.0 --port 8010
+```
+
+Health: **`GET /health`**.
+
 ## Run
 
 ```bash
